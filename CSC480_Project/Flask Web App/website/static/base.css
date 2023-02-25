@@ -1,0 +1,39 @@
+.navbarItem, .navbarItem:hover, .navbarItem:active, .navbarItem:visited, .navbarItem:link {
+    color: rgb(44, 40, 40);
+    font-weight: bold;
+}
+
+#navSection {
+    background-image: url('https://511contracosta.org/wp-content/uploads/2021/11/antioch_bridge.jpg');
+    height: 89px;
+    margin-bottom: 25px;
+}
+body {
+    background-color: #f0efef;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+#navSection nav {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid gray;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    padding: .5% 5%;
+}
+#navSection a {
+    color: #04354d;
+}
+.bannerObject {
+    height: 68px;
+    width: 343px; 
+}
+.navbarItem, .navbarItem:hover, .navbarItem:active, .navbarItem:visited, .navbarItem:link {
+    color: rgb(44, 40, 40);
+    font-weight: bold;
+    text-transform : uppercase;
+}
+footer {
+    border-top: 10px solid #f0efef;
+}
+

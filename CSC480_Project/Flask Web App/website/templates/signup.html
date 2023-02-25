@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Sign up | Contra Costa County, CA Official Website{% endblock%}
+{%block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}"/>
+<div class="mainContent row">
+    <!--- RIGHT SIDE BAR --->
+    <div class="rightSideBar column" style="background-color: #04354d; width: 27%; height: 100%;">
+        <ul style="list-style:none; justify-content: space-between;">
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/635/Business-Units">Business Units</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/6176/Enterprise-System-Catalog">Enterprise System Catalog</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/DocumentView.asp?DID=1700">Federal Engineering Report (PDF)</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/1818/GIS">GIS</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/5439/Helpdesk">Helpdesk</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/672/Mission-Statement">Mission Statement</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/666/Policies-Contracts">Policies & Contracts</a></li>
+            <li style="margin: 20px 0px;"><a style="color: white;font-size: 15px;" href="https://www.contracosta.ca.gov/665/Word-from-Chief-Information-Officer">Word from Chief Information Officer</a></li>
+        </ul>
+    </div>
+    <!---- LEFT SIDE BAR ---->
+    <div class="leftSideBar column">
+        <center><h3 style="font-weight: 550;">Contra Costa Sign up</h3></center>
+        <center><p>Create an account or <a href="/login">log in</a> here</p></center>
+        <div class="formContainer">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter Email"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="firstName">Full Name</label>
+                    <input
+                    type="firstName" 
+                    class="form-control" 
+                    id="firstName" 
+                    name="firstName" 
+                    placeholder="Enter Full Name"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password1" 
+                    name="password1" 
+                    placeholder="Enter Password"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input
+                    type="password" 
+                    class="form-control" 
+                    id="password2" 
+                    name="password2" 
+                    placeholder="Confirm Password"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password2">Department</label>
+                    <select 
+                    type="dropdown" 
+                    class="form-control" 
+                    id="department" 
+                    name="department" 
+                    placeholder="Department">
+                        <option value="Employment and Human Service Department (EHSD)">Employment and Human Service Department (EHSD)</option>
+                        <option value="Public Works Department">Public Works Department</option>
+                        <option value="District Attorney">District Attorney</option>
+                        <option value="Veteran Services Office">Veteran Services Office</option>
+                        <option value="Sheriff's Department">Sheriff's Department</option>
+                        <option value="Probation Department">Probation Department</option>
+                        <option value="Public Defender">Public Defender</option>
+                        <option value="Clerk Recorder">Clerk Recorder</option>
+                    </select>
+                </div><br/>
+                <p>Are you an employee of Constra Costa's IT Department? <a href="/empSignup">sign up</a> here.</p>
+                <button type="submit" class="btn btn-primary btn-login">Create Account</button>
+            </form>
+        </div>
+    </div>
+</div>  
+
+
+{%endblock%}

@@ -1,0 +1,36 @@
+#mainPane {
+    margin:50px 10% 30px 10%;
+    height: 750px;
+    background-color:#04354d;
+    box-shadow: 0px 0px 50px gray;
+}
+
+#loginPanel {
+    margin-top:3%;
+    margin-left:2%;
+    margin-right:2%;
+    width:30%;
+    height:750px;
+}
+
+#imagePanel {
+    width:66%;
+    height:750px;
+}
+
+.imagePanel img {
+    min-width: 100% !important;
+    min-height: 100% !important;
+    max-width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.btn-login {
+    color:#04354d;
+    background-color: rgb(235, 235, 235);
+    width:40%;
+    margin-left:0%;
+    margin-right:5%;
+}

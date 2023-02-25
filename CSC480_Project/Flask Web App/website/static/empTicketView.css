@@ -1,0 +1,56 @@
+.mainContent {
+    box-shadow: 0px 0px 25px rgb(59, 59, 59);
+    margin-bottom: 5px; 
+    margin-left: 5%; 
+    margin-right: 5%; 
+    background-color:white; 
+    min-height: 650px;
+}
+#updateContainer {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:2%;
+    margin-right:2%;
+    padding:10px 10px 10px 10px;
+    background-color: #16344227;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a7a7a7;
+    height:260px;
+}
+
+#ticketHeaders {
+    padding:5px;
+    background-color:#04354d;
+    color:white;
+    height:40px;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left:2%;
+    margin-right:2%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #c7c6c6;
+}
+.meter { 
+    height: 10px;
+    position: relative;
+    background: #f3efe6;
+    overflow: hidden;
+}
+
+.meter span {
+    display: block;
+    height: 100%;
+}
+
+.progress {
+    background-color: #052d61;
+    animation: progressBar 2s ease-in-out;
+    animation-fill-mode:both; 
+}
+
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}

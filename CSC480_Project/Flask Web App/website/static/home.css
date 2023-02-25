@@ -1,0 +1,115 @@
+.mainContent {
+    box-shadow: 0px 0px 25px rgb(59, 59, 59);
+    margin-bottom: 5px; 
+    margin-left: 5%; 
+    margin-right: 5%; 
+    background-color:white; 
+    display: flex; 
+    min-height: 650px;
+
+}
+
+#userPane {
+    background-color:#04354d;
+    width:20%;
+    padding-top:30px;
+}
+
+#createSection {
+    padding-bottom: 5px;
+    padding-top: 10px;
+    background-color:#04354d;
+}
+
+#createContainer {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:2%;
+    margin-right:2%;
+    padding:10px 10px 10px 10px;
+    background-color: #16344227;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a7a7a7;
+}
+
+#ticketSection {
+    padding-bottom: 5px;
+    padding-top: 10px;
+    background-color:#04354d;
+}
+
+#ticketContainer {
+    margin-left:2%;
+    margin-right:2%;
+    padding-top:5px;
+}
+.ticketItem{
+    padding-left:2%;
+
+}
+
+#ticketComments {
+    text-overflow:ellipsis; 
+    overflow:hidden; 
+    color:black; 
+    white-space:nowrap;
+}
+#ticketPane {
+    margin-left:5%;
+    width:73%;
+    background-color: transparent;
+    margin-right:5%;
+}
+
+#collapseable {
+    background-color: transparent;
+}
+
+.card {
+    background-color: transparent;
+    color:white;
+    border:none;
+}
+
+#ticketHeaders {
+    padding:5px;
+    background-color:#04354d;
+    color:white;
+    height:40px;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left:2%;
+    margin-right:2%;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #c7c6c6;
+}
+
+li:nth-child(odd) { background: rgb(241, 239, 239); }
+
+hr {
+    margin-left: 2%; 
+    width:89%; 
+    height:2px; 
+    border-radius: 2px; 
+    background-color:rgb(116, 114, 114); 
+    display:inline-block;
+}
+
+#tickets li {
+    height:50px;
+}
+
+#headingFour {
+    margin-bottom:-20px;
+}
+#headingFive {
+    margin-top:10px;
+    margin-bottom:-20px;
+}
+#headingSix {
+    margin-top:10px;
+    margin-bottom:-20px;
+}

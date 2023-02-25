@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock%}
+{%block content%} 
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"/>
+<!----- Should this be the central hub for all users whenever they log in?
+Shows all tickets + create new ticket field
+what else?
+-->
+
+<!-- ---------- MAIN CONTENT ---------- -->
+<div class="mainContent">
+    <!-- ---------- RIGHT SIDEBAR ---------- -->
+    <div class="column" id="userPane">
+        <center><h4 style="color:white; margin-left:2%; margin-right:2%;">{{ user.firstName }}</h4></center>
+        <div id="accordion">
+            <div class="card">
+              <div id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="color:white;">
+                        Profile
+                    </button>
+                    <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="flase" aria-controls="collapseOne" align="right" style="color:white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                        </svg>
+                    </button>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <p>Account Settings</p>
+                    <p>Personal Information</p>
+                    <a href="C:/Users/Jake%20Gillespie/Desktop/CSC480_Project/FAQFiles/pageFAQ.html" target="_blank"><p>Help</p></a>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="padding-left:4%; padding-top:5px; padding-bottom:5px;">
+              <div id="headingTwo">
+                View Tickets
+              </div>
+            </div>
+            <div class="card" style="padding-left:4%; padding-top:5px; padding-bottom:5px;">
+              <div id="headingThree">
+                <p>Create a ticket</p>
+              </div>
+
+            </div>
+          </div>
+    </div>
+    <!-- ---------- CENTER PT.1 | NEW TICKET ---------- -->
+    <div style="padding-top: 30px; width: 80%;">
+        <!-- ---------- NEW TICKET PT.1 | DROP DOWN MENUS ---------- -->
+        <div style="background-color: transparent;" id="createSection">
+            <div id="createContainer" style="height:330px;">
+                <p style="color:black; text-align: center;"><b>Create New Ticket</b></p>
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="createTicket">
+                    <p style="width: 100%; float: left; color: black;">Ticket Type
+                        <select name="ticketType" id="ticketType" style="width:80%; float: right;">
+                            {% for option in ticketTypes %}
+                            <option>{{option.ticketType}}</option>
+                            {% endfor %} 
+                        </select>
+                    </p>
+                    <p style="width: 100%; float: left; color: black;">Priority
+                        <select name="ticketType" id="ticketType" style="width:80%; float: right;">
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </p>
+                    <label for="img">Select image:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                    <!-- ---------- NEW TICKET PT.2 | DESCRIPTION & SUBMIT ---------- -->
+                    <textarea style="height: 100px; margin-bottom: 10px;" max-length='140' name ="ticketComments" id="ticketComments" class="form-control" placeholder="Enter Description..."></textarea>
+                    <button style="float: right; border: #04354d; background-color: #04354d;" type = "submit" class="btn btn-primary">Create Ticket</button>
+                </form>
+            </div>
+            
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- ---------- CENTER PT.2 | EXISTING TICKETS ---------- -->
+        <div style="background-color: transparent;" id="ticketSection">
+            <div class="row" id="ticketHeaders">
+                <div class="column" style="width:5%">ID</div>
+                <div class="column" style="width:25%">Ticket Type</div>
+                <div class="column" style="width:2%"></div>
+                <div class="column" style="width:58%">Description</div>
+                <div class="column" style="width:10%;">Status</div>
+                <div class="column" style=width:5%></div>
+            </div>
+            <div id="accordion">
+                <div class="card">
+                    <div id="headingFour">
+                        <h5 class="mb-0">
+                        <hr >
+                        <button class="btn" data-toggle="collapse" data-target="#collapseFour" style="display:inline; margin-bottom:25px;" aria-expanded="true" aria-controls="collapseFour">
+                            <b>Active</b>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                              </svg>
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div id="ticketContainer">
+                            <ul class="list-group list-group-flush" id="tickets">
+                                {% for ticket in user.creatorTicket if ticket.Status == "Active" %}
+                                    <li class="list-group-item">
+                                        <!-- ---------- EXISTING TICKETS | INDIVIDUAL TICKET ---------- -->
+                                        <div class="row ticketItem" >
+                                            <div class="column"style="width: 5%;">
+                                                <p name="ticketID" id="ticketID" style="color:#777777">{{ticket.ticketID}}</p>
+                                            </div>
+                                            <div class="column"style="width: 25%;">
+                                                <form method="POST">
+                                                    <input type="hidden" id="baseTempID" name="baseTempID" value="{{ticket.ticketID}}">
+                                                    <button style="border:none; height:inherit"><a href="/baseTicketView"><p name="ticketType" id="ticketType" style="font-weight:550">{{ ticket.ticketType }}</p></a></button>
+                                                </form>
+                                            </div> 
+                                            
+                                            <div class="column" style="width:2%">
+
+                                            </div>
+                                            <div class="column"style="width: 51%;">
+                                                <p name="ticketComments" id="ticketComments" style="text-overflow:ellipsis; overflow:hidden; color:black">{{ ticket.ticketComments }}</p>
+                                            </div>
+                                            <div class="column" style="width: 10%; text-align:center">
+                                                {% if ticket.Status == 'Active' %}
+                                                <p style="text-align: right; color: #06d34a;">
+                                                {% elif ticket.Status == 'Pending' %}
+                                                <p style="text-align: right; color: #cfb000;">
+                                                {% elif ticket.Status == 'Resolved' %}
+                                                <p style="text-align: right; color: #08c0ee;">
+                                                {% else %}
+                                                <p style="text-align: right;">
+                                                {% endif %}
+                                                {{ ticket.Status }}</p>
+                                            </div>
+                                            <div class="column" style="width:5%">
+                                                <button type="button" class="close" onClick="delete_ticket({{ticket.ticketID}})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="headingFive">
+                        <h5 class="mb-0">
+                        <hr>
+                        <button class="btn" data-toggle="collapse" data-target="#collapseFive" style="display:inline; margin-bottom:25px;" aria-expanded="true" aria-controls="collapseFive">
+                            <b>Pending</b>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                              </svg>
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div id="ticketContainer">
+                            <ul class="list-group list-group-flush"  id="tickets">
+                                {% for ticket in user.creatorTicket if ticket.Status == "Pending" %}
+                                    <li class="list-group-item">
+                                        <!-- ---------- EXISTING TICKETS | INDIVIDUAL TICKET ---------- -->
+                                        <div class="row ticketItem" >
+                                            <div class="column"style="width: 5%;">
+                                                <p name="ticketID" id="ticketID" style="color:#777777">{{ticket.ticketID}}</p>
+                                            </div>
+                                            <div class="column"style="width: 25%;">
+                                                <form method="POST">
+                                                    <input type="hidden" id="baseTempID" name="baseTempID" value="{{ticket.ticketID}}">
+                                                    <button style="border:none; height:inherit; background-color:transparent"><a href="/baseTicketView"><p name="ticketType" id="ticketType" style="font-weight:550">{{ ticket.ticketType }}</p></a></button>
+                                                </form>
+                                            </div> 
+                                            <div class="column" style="width:2%">
+
+                                            </div>
+                                            <div class="column"style="width: 51%;">
+                                                <p name="ticketComments" id="ticketComments">{{ ticket.ticketComments }}</p>
+                                            </div>
+                                            <div class="column" style="width: 10%; text-align:center">
+                                                <p style="text-align:right; color:#f7d205">
+                                                {{ ticket.Status }}</p>
+                                            </div>
+                                            <div class="column" style="width:5%">
+                                                <form method="POST">
+                                                    <input type="hidden" id="ticketID" name="ticketID" value="{{ticket.ticketID}}">
+                                                    <input type="hidden" name="cancelTicket">
+                                                    <button type="submit" style="border:none; float:right; background-color:transparent">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="headingSix">
+                        <h5 class="mb-0">
+                        <hr >
+                        <button class="btn" data-toggle="collapse" data-target="#collapseSix" style="display:inline; margin-bottom:25px;" aria-expanded="true" aria-controls="collapseSix">
+                            <b>Resolved</b>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                              </svg>
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseSix" class="collapse show" aria-labelledby="headingSix" data-parent="#accordion">
+                        <div id="ticketContainer">
+                            <ul class="list-group list-group-flush" id="tickets">
+                                {% for ticket in user.creatorTicket if ticket.Status == "Resolved" %}
+                                    <li class="list-group-item">
+                                        <!-- ---------- EXISTING TICKETS | INDIVIDUAL TICKET ---------- -->
+                                        <div class="row ticketItem" >
+                                            <div class="column"style="width: 5%;">
+                                                <p name="ticketID" id="ticketID" style="color:#777777">{{ticket.ticketID}}</p>
+                                            </div>
+                                            <div class="column"style="width: 25%;">
+                                                <form method="POST">
+                                                    <input type="hidden" id="baseTempID" name="baseTempID" value="{{ticket.ticketID}}">
+                                                    <button style="border:none; height:inherit"><a href="/baseTicketView"><p name="ticketType" id="ticketType" style="font-weight:550">{{ ticket.ticketType }}</p></a></button>
+                                                </form>
+                                            </div> 
+                                            <div class="column" style="width:2%">
+
+                                            </div>
+                                            <div class="column"style="width: 51%;">
+                                                <p name="ticketComments" id="ticketComments" style="text-overflow:ellipsis; overflow:hidden; color:black">{{ ticket.ticketComments }}</p>
+                                            </div>
+                                            <div class="column" style="width: 10%; text-align:center">
+                                                <p style="text-align:right; color:#088fdd"><b>
+                                                {{ ticket.Status }}</b></p>
+                                            </div>
+                                            <div class="column" style="width:5%">
+                                                <button type="button" class="close" onClick="delete_ticket({{ticket.ticketID}})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div class="card">
+                <div id="headingSeven">
+                    <h5 class="mb-0">
+                    <hr >
+                    <button class="btn" data-toggle="collapse" data-target="#collapseSeven" style="display:inline; margin-bottom:25px;" aria-expanded="true" aria-controls="collapseSeven">
+                        <b>Canceled</b>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                            </svg>
+                    </button>
+                    </h5>
+                </div>
+                <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion">
+                    <div id="ticketContainer">
+                        <ul class="list-group list-group-flush" id="tickets">
+                            {% for ticket in user.creatorTicket if ticket.Status == "Cancelled" %}
+                                <li class="list-group-item">
+                                    <!-- ---------- EXISTING TICKETS | INDIVIDUAL TICKET ---------- -->
+                                    <div class="row ticketItem" >
+                                        <div class="column"style="width: 5%;">
+                                            <p name="ticketID" id="ticketID" style="color:#777777">{{ticket.ticketID}}</p>
+                                        </div>
+                                        <div class="column"style="width: 25%;">
+                                            <form method="POST">
+                                                <input type="hidden" id="baseTempID" name="baseTempID" value="{{ticket.ticketID}}">
+                                                <button style="border:none; height:inherit"><a href="/baseTicketView"><p name="ticketType" id="ticketType" style="font-weight:550">{{ ticket.ticketType }}</p></a></button>
+                                            </form>
+                                        </div> 
+                                        <div class="column" style="width:2%">
+
+                                        </div>
+                                        <div class="column"style="width: 51%;">
+                                            <p name="ticketComments" id="ticketComments" style="text-overflow:ellipsis; overflow:hidden; color:black">{{ ticket.ticketComments }}</p>
+                                        </div>
+                                        <div class="column" style="width: 10%; text-align:center">
+                                            <p style="color:red; text-align:right">
+                                            <b>{{ ticket.Status }}</b></p>
+                                        </div>
+                                        <div class="column" style="width:5%">
+                                            <button type="button" class="close" onClick="delete_ticket({{ticket.ticketID}})">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

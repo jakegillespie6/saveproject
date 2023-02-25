@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Login | Contra Costa County, CA Official Website{% endblock%}
+{%block content%} 
+
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}"/>
+    <div class="row" id="mainPane" style="color:white;">
+        <div class="column" id="loginPanel">
+            <form method="POST">
+                <h3 style="text-align: center;">Contra Costa Log in</h3>
+                <br/>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter Email"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter Password"
+                    />
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary btn-login"><b>Log in</b></button>
+            </form>
+        </div>
+        <div id="imagePanel">
+            <img style="min-width: 100% !important; min-height: 100% !important; max-width: 100%; height: 100%; background-repeat: no-repeat; background-size: contain;" 
+            src="https://cdn.kimkim.com/files/a/content_articles/featured_photos/c6d9f3a9595db00a00788776943b435556303aea/big-9f1b5b31e9c3985ecb9c7eda09cf206f.jpg">
+        </div>
+    </div>
+
+{%endblock%}

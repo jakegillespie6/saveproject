@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock%}
+{%block content%} 
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"/>
+<!----- Should this be the central hub for all users whenever they log in?
+Shows all tickets + create new ticket field
+what else?
+-->
+
+<!-- ---------- MAIN CONTENT ---------- -->
+<div class="mainContent">
+    <!-- ---------- RIGHT SIDEBAR ---------- -->
+    <div class="column" id="userPane">
+        <center><h4 style="color:white; margin-left:2%; margin-right:2%;">{{ user.firstName }}</h4></center>
+        <div id="accordion">
+            <div class="card">
+              <div id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="color:white;">
+                        Profile
+                    </button>
+                    <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="flase" aria-controls="collapseOne" align="right" style="color:white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                        </svg>
+                    </button>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <p>Account Settings</p>
+                    <p>Personal Information</p>
+                    <p>Help</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="padding-left:4%; padding-top:5px; padding-bottom:5px;">
+              <div id="headingTwo">
+                <p><a style="color:white;" href="/"><b>My Tickets</b></a></p>
+              </div>
+            </div>
+            <div class="card" style="padding-left:4%; padding-top:5px; padding-bottom:5px;">
+              <div id="headingThree">
+                <p><a style="color:white;" href="/empTicketHub"><b>Ticket Hub</b></a></p>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- ---------- CENTER PT.1 | NEW TICKET ---------- -->
+    <div style="padding-top: 30px; width: 80%;">
+        <center><h2>My Tickets</h2></center>
+        <!-- ---------- CENTER PT.2 | EXISTING TICKETS ---------- -->
+        <div style="background-color: transparent;" id="ticketSection">
+            <div class="row" id="ticketHeaders">
+                <div class="column" style="width:5%">ID</div>
+                <div class="column" style="width:25%">Ticket Type</div>
+                <div class="column" style="width:2%"></div>
+                <div class="column" style="width:58%">Description</div>
+                <div class="column" style="width:10%;">Status</div>
+                <div class="column" style=width:5%></div>
+            </div>
+            <div id="accordion">
+                <div class="card">
+                    <div id="headingFour">
+                        <h5 class="mb-0">
+                        <hr >
+                        <button class="btn" data-toggle="collapse" data-target="#collapseFour" style="display:inline; margin-bottom:25px;" aria-expanded="true" aria-controls="collapseFour">
+                            <b>Active</b>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-expand" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                              </svg>
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div id="ticketContainer">
+                            <ul class="list-group list-group-flush" id="tickets">
+                                {% for ticket in user.empTicket if ticket.Status == "Active" %}
+                                    <li class="list-group-item">
+                                        <!-- ---------- EXISTING TICKETS | INDIVIDUAL TICKET ---------- -->
+                                        <div class="row ticketItem" >
+                                            <div class="column"style="width: 5%;">
+                                                <p name="ticketID" id="ticketID" style="color:#777777">{{ticket.ticketID}}</p>
+                                            </div>
+                                            <div class="column" style="width: 25%;">
+                                                <form method="POST">
+                                                    <input type="hidden" id='tempID' name='tempID' value="{{ticket.ticketID}}">
+                                                    <button style="border:none; height:inherit"><a href="/empTicketView"><p name="ticketType" id="ticketType" style="font-weight:550">{{ ticket.ticketType }}</p></a></button>
+                                                </form>
+                                            </div> 
+                                            <div class="column" style="width:2%"></div>
+                                            <div class="column"style="width: 50%;">
+                                                <p name="ticketComments" id="ticketComments" style="text-overflow:ellipsis; overflow:hidden; color:black">{{ ticket.ticketComments }}</p>
+                                            </div>
+                                            <div class="column" style="width: 10%; text-align:center">
+                                                {% if ticket.Status == 'Active' %}
+                                                <p style="text-align: right; color: #06d34a;">
+                                                {% elif ticket.Status == 'Pending' %}
+                                                <p style="text-align: right; color: #cfb000;">
+                                                {% elif ticket.Status == 'Resolved' %}
+                                                <p style="text-align: right; color: #08c0ee;">
+                                                {% else %}
+                                                <p style="text-align: right;">
+                                                {% endif %}
+                                                {{ ticket.Status }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
